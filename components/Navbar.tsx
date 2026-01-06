@@ -28,9 +28,11 @@ export default function Navbar() {
                                 Log In
                             </button>
                         </Link>
-                        <button className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-                            Sign Up
-                        </button>
+                        <Link href="/signup">
+                            <button className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                                Sign Up
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
