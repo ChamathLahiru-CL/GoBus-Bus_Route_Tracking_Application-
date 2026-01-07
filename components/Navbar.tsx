@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Navbar() {
     return (
         <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -21,12 +23,16 @@ export default function Navbar() {
 
                     {/* Auth Buttons */}
                     <div className="flex items-center gap-3">
-                        <button className="px-5 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium">
-                            Log In
-                        </button>
-                        <button className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-                            Sign Up
-                        </button>
+                        <Link href="/login">
+                            <button className="px-5 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium">
+                                Log In
+                            </button>
+                        </Link>
+                        <Link href="/signup">
+                            <button className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                                Sign Up
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
