@@ -112,13 +112,13 @@ export default function BusManagement() {
                     {/* Modern Search Bar */}
                     <div className="mb-8">
                         <div className="relative max-w-md">
-                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
                             <input
                                 type="text"
                                 placeholder="Search by bus number, driver, or route..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-12 pr-4 py-4 bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none shadow-lg hover:shadow-xl transition-all duration-300 text-gray-900 placeholder:text-gray-500"
                             />
                         </div>
                     </div>
