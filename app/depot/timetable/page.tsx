@@ -139,7 +139,7 @@ export default function Timetable() {
                                         type="date"
                                         value={selectedDate}
                                         onChange={(e) => setSelectedDate(e.target.value)}
-                                        className="outline-none"
+                                        className="outline-none text-gray-900 font-medium cursor-pointer"
                                     />
                                 </div>
                             </div>
@@ -199,7 +199,7 @@ export default function Timetable() {
                                                 <select
                                                     value={schedule.status}
                                                     onChange={(e) => handleStatusChange(routeIndex, scheduleIndex, e.target.value as ScheduleStatus)}
-                                                    className="w-full px-2 py-1 rounded border border-current bg-white text-sm font-semibold"
+                                                    className="w-full px-2 py-1 rounded border border-current bg-white text-gray-900 text-sm font-semibold cursor-pointer hover:bg-gray-50 transition"
                                                 >
                                                     <option value="scheduled">Scheduled</option>
                                                     <option value="departed">Departed</option>
@@ -213,22 +213,22 @@ export default function Timetable() {
 
                                 {/* Summary */}
                                 <div className="mt-6 pt-4 border-t">
-                                    <div className="flex gap-6 text-sm">
+                                    <div className="flex flex-wrap gap-6 text-sm text-gray-700">
                                         <div className="flex items-center gap-2">
                                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                            <span>Departed: {timetable.schedules.filter(s => s.status === 'departed').length}</span>
+                                            <span className="font-medium">Departed: {timetable.schedules.filter(s => s.status === 'departed').length}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                                            <span>Scheduled: {timetable.schedules.filter(s => s.status === 'scheduled').length}</span>
+                                            <span className="font-medium">Scheduled: {timetable.schedules.filter(s => s.status === 'scheduled').length}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                            <span>Delayed: {timetable.schedules.filter(s => s.status === 'delayed').length}</span>
+                                            <span className="font-medium">Delayed: {timetable.schedules.filter(s => s.status === 'delayed').length}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                            <span>Cancelled: {timetable.schedules.filter(s => s.status === 'cancelled').length}</span>
+                                            <span className="font-medium">Cancelled: {timetable.schedules.filter(s => s.status === 'cancelled').length}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -250,7 +250,7 @@ export default function Timetable() {
                                         type="time"
                                         value={newSchedule.time}
                                         onChange={(e) => setNewSchedule({ ...newSchedule, time: e.target.value })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none text-gray-900 font-medium cursor-pointer"
                                     />
                                 </div>
 
@@ -260,7 +260,7 @@ export default function Timetable() {
                                         type="text"
                                         value={newSchedule.busNumber}
                                         onChange={(e) => setNewSchedule({ ...newSchedule, busNumber: e.target.value })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none text-gray-900 placeholder:text-gray-500"
                                         placeholder="B-XXX"
                                     />
                                 </div>
@@ -270,7 +270,7 @@ export default function Timetable() {
                                     <select
                                         value={newSchedule.status}
                                         onChange={(e) => setNewSchedule({ ...newSchedule, status: e.target.value as ScheduleStatus })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none text-gray-900 font-medium cursor-pointer hover:bg-gray-50 transition"
                                     >
                                         <option value="scheduled">Scheduled</option>
                                         <option value="departed">Departed</option>
