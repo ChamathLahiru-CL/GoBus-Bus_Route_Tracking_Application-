@@ -74,25 +74,27 @@ export default function BusManagement() {
     );
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-            {/* Header */}
-            <header className="bg-white shadow-md sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex items-center justify-between">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+            {/* Modern Header with Glass Effect */}
+            <header className="bg-white/80 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div className="flex items-center gap-4">
                             <Link href="/depot">
-                                <button className="p-2 hover:bg-gray-100 rounded-lg transition">
-                                    <ArrowLeft size={24} />
+                                <button className="p-3 bg-white/50 hover:bg-white/70 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                    <ArrowLeft size={24} className="text-gray-700" />
                                 </button>
                             </Link>
-                            <div>
-                                <h1 className="text-3xl font-bold text-gray-900">Bus Management</h1>
-                                <p className="text-gray-600 mt-1">Manage buses and assign drivers</p>
+                            <div className="space-y-1">
+                                <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                    Bus Management
+                                </h1>
+                                <p className="text-gray-600 text-lg">Manage buses and assign drivers</p>
                             </div>
                         </div>
                         <button
                             onClick={() => setShowAddModal(true)}
-                            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+                            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                         >
                             <Plus size={20} />
                             Add New Bus
@@ -102,182 +104,192 @@ export default function BusManagement() {
             </header>
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Search Bar */}
-                <div className="mb-6">
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                {/* Modern Search Bar */}
+                <div className="mb-8">
+                    <div className="relative max-w-md">
+                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                         <input
                             type="text"
                             placeholder="Search by bus number, driver, or route..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full pl-12 pr-4 py-4 bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg hover:shadow-xl transition-all duration-300"
                         />
                     </div>
                 </div>
 
-                {/* Bus List */}
-                <div className="grid grid-cols-1 gap-6">
+                {/* Modern Bus List */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {filteredBuses.map((bus) => (
-                        <div key={bus.id} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-6 flex-1">
-                                    <div className="bg-blue-100 p-4 rounded-lg">
-                                        <Bus className="text-blue-600" size={32} />
+                        <div key={bus.id} className="group bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border border-white/50 hover:border-blue-200 transform hover:-translate-y-1">
+                            <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                        <Bus className="text-white" size={32} />
                                     </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 flex-1">
-                                        <div>
-                                            <p className="text-sm text-gray-600">Bus Number</p>
-                                            <p className="text-lg font-bold text-gray-900">{bus.busNumber}</p>
-                                        </div>
-
-                                        <div>
-                                            <p className="text-sm text-gray-600">Driver</p>
-                                            <p className="text-lg font-semibold text-gray-900">{bus.driverName}</p>
-                                            <p className="text-sm text-gray-500">{bus.driverContact}</p>
-                                        </div>
-
-                                        <div>
-                                            <p className="text-sm text-gray-600">Route & Capacity</p>
-                                            <p className="text-lg font-semibold text-gray-900">{bus.route}</p>
-                                            <p className="text-sm text-gray-500">{bus.capacity} seats</p>
-                                        </div>
-
-                                        <div>
-                                            <p className="text-sm text-gray-600">Status</p>
-                                            <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${bus.status === 'active' ? 'bg-green-100 text-green-800' :
-                                                    bus.status === 'maintenance' ? 'bg-yellow-100 text-yellow-800' :
-                                                        'bg-gray-100 text-gray-800'
-                                                }`}>
-                                                {bus.status.charAt(0).toUpperCase() + bus.status.slice(1)}
-                                            </span>
-                                            <p className="text-sm text-gray-500 mt-1">Service: {bus.lastService}</p>
-                                        </div>
+                                    <div>
+                                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                            {bus.busNumber}
+                                        </h3>
+                                        <p className="text-gray-600">{bus.route}</p>
                                     </div>
                                 </div>
-
                                 <div className="flex items-center gap-2">
-                                    <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition">
+                                    <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300 hover:shadow-md">
                                         <Edit size={20} />
                                     </button>
                                     <button
                                         onClick={() => handleDeleteBus(bus.id)}
-                                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition"
+                                        className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300 hover:shadow-md"
                                     >
                                         <Trash2 size={20} />
                                     </button>
                                 </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4 mb-4">
+                                <div className="bg-white/50 rounded-xl p-4">
+                                    <p className="text-sm text-gray-600 font-medium">Driver</p>
+                                    <p className="text-lg font-semibold text-gray-900">{bus.driverName}</p>
+                                    <p className="text-sm text-gray-500">{bus.driverContact}</p>
+                                </div>
+                                <div className="bg-white/50 rounded-xl p-4">
+                                    <p className="text-sm text-gray-600 font-medium">Capacity</p>
+                                    <p className="text-lg font-semibold text-gray-900">{bus.capacity} seats</p>
+                                    <p className="text-sm text-gray-500">Last service: {bus.lastService}</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                                <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${bus.status === 'active' ? 'bg-green-100 text-green-800' :
+                                        bus.status === 'maintenance' ? 'bg-yellow-100 text-yellow-800' :
+                                            'bg-gray-100 text-gray-800'
+                                    }`}>
+                                    {bus.status.charAt(0).toUpperCase() + bus.status.slice(1)}
+                                </span>
+                                <span className="text-sm text-gray-500">ID: {bus.id}</span>
                             </div>
                         </div>
                     ))}
                 </div>
             </main>
 
-            {/* Add Bus Modal */}
+            {/* Modern Add Bus Modal */}
             {showAddModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white rounded-xl p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6">Add New Bus</h2>
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-white/50">
+                        <div className="p-8">
+                            <div className="flex items-center justify-between mb-6">
+                                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                    Add New Bus
+                                </h2>
+                                <button
+                                    onClick={() => setShowAddModal(false)}
+                                    className="p-2 hover:bg-gray-100 rounded-xl transition-all duration-300"
+                                >
+                                    ✕
+                                </button>
+                            </div>
 
-                        <div className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Bus Number</label>
-                                    <input
-                                        type="text"
-                                        value={newBus.busNumber}
-                                        onChange={(e) => setNewBus({ ...newBus, busNumber: e.target.value })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                                        placeholder="B-XXX"
-                                    />
+                            <div className="space-y-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="block text-sm font-semibold text-gray-700">Bus Number</label>
+                                        <input
+                                            type="text"
+                                            value={newBus.busNumber}
+                                            onChange={(e) => setNewBus({ ...newBus, busNumber: e.target.value })}
+                                            className="w-full px-4 py-3 bg-white/70 border border-white/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                                            placeholder="B-XXX"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="block text-sm font-semibold text-gray-700">Capacity</label>
+                                        <input
+                                            type="number"
+                                            value={newBus.capacity}
+                                            onChange={(e) => setNewBus({ ...newBus, capacity: parseInt(e.target.value) })}
+                                            className="w-full px-4 py-3 bg-white/70 border border-white/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                                        />
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Capacity</label>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="block text-sm font-semibold text-gray-700">Driver Name</label>
+                                        <input
+                                            type="text"
+                                            value={newBus.driverName}
+                                            onChange={(e) => setNewBus({ ...newBus, driverName: e.target.value })}
+                                            className="w-full px-4 py-3 bg-white/70 border border-white/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                                            placeholder="Driver name"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="block text-sm font-semibold text-gray-700">Driver Contact</label>
+                                        <input
+                                            type="text"
+                                            value={newBus.driverContact}
+                                            onChange={(e) => setNewBus({ ...newBus, driverContact: e.target.value })}
+                                            className="w-full px-4 py-3 bg-white/70 border border-white/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                                            placeholder="07XXXXXXXX"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="block text-sm font-semibold text-gray-700">Route</label>
+                                        <input
+                                            type="text"
+                                            value={newBus.route}
+                                            onChange={(e) => setNewBus({ ...newBus, route: e.target.value })}
+                                            className="w-full px-4 py-3 bg-white/70 border border-white/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                                            placeholder="Route 15"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="block text-sm font-semibold text-gray-700">Status</label>
+                                        <select
+                                            value={newBus.status}
+                                            onChange={(e) => setNewBus({ ...newBus, status: e.target.value as 'active' | 'maintenance' | 'inactive' })}
+                                            className="w-full px-4 py-3 bg-white/70 border border-white/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                                        >
+                                            <option value="active">Active</option>
+                                            <option value="maintenance">Maintenance</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="block text-sm font-semibold text-gray-700">Last Service Date</label>
                                     <input
-                                        type="number"
-                                        value={newBus.capacity}
-                                        onChange={(e) => setNewBus({ ...newBus, capacity: parseInt(e.target.value) })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                        type="date"
+                                        value={newBus.lastService}
+                                        onChange={(e) => setNewBus({ ...newBus, lastService: e.target.value })}
+                                        className="w-full px-4 py-3 bg-white/70 border border-white/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
                                     />
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Driver Name</label>
-                                    <input
-                                        type="text"
-                                        value={newBus.driverName}
-                                        onChange={(e) => setNewBus({ ...newBus, driverName: e.target.value })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                                        placeholder="Driver name"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Driver Contact</label>
-                                    <input
-                                        type="text"
-                                        value={newBus.driverContact}
-                                        onChange={(e) => setNewBus({ ...newBus, driverContact: e.target.value })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                                        placeholder="07XXXXXXXX"
-                                    />
-                                </div>
+                            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                                <button
+                                    onClick={handleAddBus}
+                                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                                >
+                                    Add Bus
+                                </button>
+                                <button
+                                    onClick={() => setShowAddModal(false)}
+                                    className="flex-1 px-6 py-3 bg-white/70 backdrop-blur-sm text-gray-700 rounded-xl hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border border-white/50"
+                                >
+                                    Cancel
+                                </button>
                             </div>
-
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Route</label>
-                                    <input
-                                        type="text"
-                                        value={newBus.route}
-                                        onChange={(e) => setNewBus({ ...newBus, route: e.target.value })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                                        placeholder="Route 15"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                                    <select
-                                        value={newBus.status}
-                                        onChange={(e) => setNewBus({ ...newBus, status: e.target.value as 'active' | 'maintenance' | 'inactive' })}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                                    >
-                                        <option value="active">Active</option>
-                                        <option value="maintenance">Maintenance</option>
-                                        <option value="inactive">Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Last Service Date</label>
-                                <input
-                                    type="date"
-                                    value={newBus.lastService}
-                                    onChange={(e) => setNewBus({ ...newBus, lastService: e.target.value })}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4 mt-6">
-                            <button
-                                onClick={handleAddBus}
-                                className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-                            >
-                                Add Bus
-                            </button>
-                            <button
-                                onClick={() => setShowAddModal(false)}
-                                className="flex-1 px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
-                            >
-                                Cancel
-                            </button>
                         </div>
                     </div>
                 </div>
