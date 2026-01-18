@@ -170,7 +170,7 @@ export default function BookingsOverview() {
                                         type="date"
                                         value={selectedDate}
                                         onChange={(e) => setSelectedDate(e.target.value)}
-                                        className="outline-none flex-1"
+                                        className="outline-none flex-1 text-gray-900 font-medium cursor-pointer"
                                     />
                                 </div>
                             </div>
@@ -179,7 +179,7 @@ export default function BookingsOverview() {
                                 <select
                                     value={filterRoute}
                                     onChange={(e) => setFilterRoute(e.target.value)}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none text-gray-900 font-medium cursor-pointer hover:bg-gray-50 transition"
                                 >
                                     <option value="all">All Routes</option>
                                     <option value="Route 15">Route 15</option>
@@ -192,7 +192,7 @@ export default function BookingsOverview() {
                                 <select
                                     value={filterStatus}
                                     onChange={(e) => setFilterStatus(e.target.value)}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none text-gray-900 font-medium cursor-pointer hover:bg-gray-50 transition"
                                 >
                                     <option value="all">All Status</option>
                                     <option value="confirmed">Confirmed</option>
